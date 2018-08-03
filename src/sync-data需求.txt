@@ -1,0 +1,27 @@
+//Sync Data from MongoDB to Hive Daily
+//hive ddl:
+create external table bonus_sync_di(
+        type   string  ,
+        sms_id   string  ,
+        email_template_id   string  ,
+        mp_media_id   string  ,
+        operator_passport    string  ,
+        operator_name    string ,
+        old_level    string    ,
+        new_level    string   ,
+        old_mp_channel_id    string  ,
+        new_mp_channel_id    string  ,
+        mp_profile_id string,
+        profile_reaction    string,
+        create_time string
+)
+PARTITIONED BY (
+  dt string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '|'
+STORED AS TEXTFILE
+LOCATION
+'/user/mediaai/hive/warehouse/mediaai/tables/bonus_sync_di';
+
+
